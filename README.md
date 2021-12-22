@@ -1,9 +1,7 @@
-# class-app
-.net core + angular class app
-
-1.  using dotnet CLI (come with dotnet sdk)
-2. API controllers/endpoints (understand structure)
-3. Entity Framework
-4. API project structure (whats in it, how app starts)
-5. config and env variables
-6. source control (commiting code for backup and version control)
+8. Getting to know the API project files
+9. Creating our first entity
+10. Introduction to Entity Framework
+11. Adding Entity Framework to our project
+12. Adding a DbContext class
+13. Creating the Connection string
+14. Creating the DB using EF Code First migrations
