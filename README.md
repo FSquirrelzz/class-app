@@ -7,3 +7,6 @@
   6. Adding external packages via npm (Node Package Manager)
 
 20. Creating the Angular Application
+21. Running the angular project and reviewing the bootstrap of the app
+22. Adding VS code extensions to work with angular
+23. Making HTTP requests in angular
