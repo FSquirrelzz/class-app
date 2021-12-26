@@ -10,12 +10,12 @@
 17. Saving our code into the source control
 
 18. Section 1 Summary :
-  a. used dotnet CLI to create app, solution file gitignore file
-  b. implemented basic API functionality, controller and endpoints
-  c. installed entity framework, get data
-  d. project structure
-  e. configuration of variables within our app
-  f . source control
+  I. used dotnet CLI to create app, solution file gitignore file
+  II. implemented basic API functionality, controller and endpoints
+  III. installed entity framework, get data
+  IV. project structure
+  V. configuration of variables within our app
+  VI. source control
 
 next up :
 setting our angular app to get data from there
