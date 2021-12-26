@@ -5,3 +5,6 @@
 12. Adding a DbContext class
 13. Creating the Connection string
 14. Creating the DB using EF Code First migrations
+15. Adding a new API Controller
+16. Making our code Asynchronous
+17. Saving our code into the source control
