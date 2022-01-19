@@ -16,14 +16,14 @@ public class UsersController : BaseAPIController
     {
         _context=context;
     }
-
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     {
         var users = await _context.Users.ToListAsync();
         return users;
     }
-
+    [Authorize]
     [HttpGet("{id}")] //: id router paramter : api/users/3
     public async  Task<ActionResult<AppUser>> GetUser(int id)
     {
