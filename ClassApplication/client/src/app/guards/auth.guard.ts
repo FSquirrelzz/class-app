@@ -20,6 +20,6 @@ export class AuthGuard  implements CanActivate {
     )
   }
 
-}
+}*/
 
 // uncomment when im caught up to 19/01, missing too much to make this work
