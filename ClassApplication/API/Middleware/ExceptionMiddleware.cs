@@ -29,7 +29,8 @@ namespace API.Middleware
             }
             catch (Exception ex)
             {
-                
+                System.Console.WriteLine(ex.InnerException);
+                System.Console.WriteLine(ex.Message);
                 throw;
             }
         }

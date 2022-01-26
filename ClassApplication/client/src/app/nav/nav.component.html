@@ -1,24 +1,21 @@
-<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Dating App</a>
-    <ul *ngIf="currentUser$|async" class="navbar-nav mr-auto">
-      <!-- <ng-container *ngIf="currentUser$ | async"></ng-container> -->
+    <a class="navbar-brand" routerLink="/">Dating App</a>
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="currentUser$ | async">
       <li class="nav-item">
-        <a class="nav-link" href="#">Matches</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/members">Matches</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Lists</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/lists">Lists</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Messages</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
-      <!-- </ng-container> -->
+      </ng-container>
     </ul>
     <div class="dropdown show" *ngIf="currentUser$|async" dropdown>
-      <a class="dropdown-toggle text-light" href="#" dropdownToggle> Welcome User
+      <a class="dropdown-toggle text-light" dropdownToggle> Welcome User
       </a>
 
       <div class="dropdown-menu mt-3" *dropdownMenu>
