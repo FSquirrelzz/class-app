@@ -26,13 +26,6 @@ export class NavComponent implements OnInit {
         this.toastr.success("Welcome")
         console.log(response);
       },
-      error: (error) => {
-        this.toastr.error(error.error);
-        console.log('Failed to log in', error);
-      },
-      complete: () => {
-        console.log('Successfully logged in');
-      },
     });
   }
   logout(): void {

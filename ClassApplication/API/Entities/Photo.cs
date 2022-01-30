@@ -1,3 +1,4 @@
+/*
 namespace API.Entities
 {
     public class Photo
@@ -9,3 +10,4 @@ namespace API.Entities
         public string PublicId{get;set;}   
     }
 }
+*/

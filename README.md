@@ -1,1 +1,1 @@
-i literally have no clue whats going on anymore
+finished up to 23/01, one class to go
