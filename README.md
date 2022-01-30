@@ -1,1 +1,3 @@
-finished up to 23/01, one class to go
+managed to catch up wooo
+
+end of section 8
