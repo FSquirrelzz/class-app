@@ -1,7 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Controllers;
 using API.Data;
 using API.DTOs;
 using API.Entities;
@@ -10,29 +10,35 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-[Authorize]
-public class UsersController : BaseAPIController
+
+namespace API.Controllers
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
-
-    public UsersController(IUserRepository userRepository,IMapper mapper)
+    [Authorize]
+    public class UsersController : BaseAPIController
     {
-        _userRepository=userRepository;
-        _mapper = mapper;
-    }
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
-    {
-        var users = await _userRepository.GetMembersAsync();
-        return Ok(users);
-    }
+        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-    [HttpGet("{username}")] //: id router paramter : api/users/3
-    public async  Task<ActionResult<MemberDTO>> GetUser(string username)
-    {
-        var user = await _userRepository.GetMemberAsync(username);
-        return user;
+        public UsersController(IUserRepository userRepository, IMapper mapper)
+        {
+            _mapper = mapper;
+            _userRepository = userRepository;
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
+        {
+            var usersToREturn = await _userRepository.GetMembersAsync();
+            // var users = await _userRepository.GetUsersAsync();
+            // var usersToREturn = _mapper.Map<IEnumerable<MemberDto>>(users);
+            return Ok(usersToREturn);
+        }
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDTO>> GetUser(string username)
+        {
+            // var user = await _userRepository.GetUserByUserNameAsync(username);
+            // var userToReturn = _mapper.Map<MemberDto>(user);
+            var userToReturn = await _userRepository.GetMemberAsync(username); 
+            return userToReturn;
+        }
     }
-
 }

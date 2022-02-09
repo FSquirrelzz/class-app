@@ -1,45 +1,63 @@
+using System.Net;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
-    public class BuggyController:BaseAPIController
+
+    public class BuggyController: BaseAPIController
     {
         private readonly DataContext _context;
+
         public BuggyController(DataContext context)
         {
-            _context=context;
+            _context = context;
         }
 
+        //  401 unauthorized
         [Authorize]
-        [HttpGet("auth")]//401 unauthorized
-        public ActionResult<string>GetSecret()//api/buggy/auth
+        [HttpGet("auth")]// api/buggy/auth
+        public ActionResult<string> GetSecret()
         {
-            return "SecretString";
+            return "Secret String";
         }
-        [HttpGet("not-found")]//404 not found
-        public ActionResult<AppUser> GetNotFound()//api/buggy/not-found
+
+
+        // 404 not found
+        [HttpGet("not-found")] // api/buggy/not-found
+        public ActionResult<AppUser> GetNotFound()
         {
             var thing = _context.Users.Find(-1);
             if (thing == null)
             {
                 return NotFound();
             }
-            return Ok();
+
+            return Ok(); //🤣
         }
-        [HttpGet("server-error")]//500 server error
-        public ActionResult<string>GetServerError()//api/buggy/server-error
+
+
+        // 500 server error
+        [HttpGet("server-error")]//api/buggy/server-error
+        public ActionResult<string> GetServerError()
         {
-           var thing = _context.Users.Find(-1);
-           var thingToString = thing.ToString();//NullReferenceException
-           return thingToString;
+             var thing = _context.Users.Find(-1);
+             var thingToString = thing.ToString(); //NullReferenceExaption
+             return thingToString; // 🤣
         }
+
+
         [HttpGet("bad-request")]//api/buggy/bad-request
-        public ActionResult<string>GetBadRequest()
-        {
-            return BadRequest("Bad information");
+        public ActionResult<string> GetBadRequest() {
+            return BadRequest("this was not a good request");
         }
     }
 }

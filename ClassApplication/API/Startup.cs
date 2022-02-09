@@ -1,3 +1,4 @@
+using System.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Microsoft.OpenApi.Models;
 using API.Extensions;
 using API.Middleware;
 
@@ -30,14 +30,15 @@ namespace API
         public Startup(IConfiguration config)
         {
             _config = config;
-
         }
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.addApplicationServices(_config);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,16 +47,18 @@ namespace API
 
             services.AddCors();
 
-            services.addIdentityServices(_config);
+            services.AddIdentityServices(_config);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
+            
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                // app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
@@ -63,13 +66,13 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(policy=>
+            
+            app.UseCors(policy => 
             policy
             .AllowAnyHeader()
             .AllowAnyMethod()
             .WithOrigins("https://localhost:4200"));
-            
+
             app.UseAuthentication();
 
             app.UseAuthorization();

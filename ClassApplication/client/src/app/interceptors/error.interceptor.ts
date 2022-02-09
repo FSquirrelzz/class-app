@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         catchError(err => {
           switch (err.status) {
             case 400:
-              if (err.error?.errors) {
+              if (err.error?.errors) { // {modelName: {fieldName: 'field error message}}
                 const modelStateErrors: string[][] = [];
 
                 for (const key in err.error.errors) {
@@ -40,6 +40,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             case 401:
               this.toastr.error(err.statusText === 'OK' ? "Unauthorized" : err.statusText, err.status)
+              console.log(err);
               break;
             case 404:
               this.router.navigateByUrl('/not-found');
@@ -49,7 +50,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
-              this.toastr.error("Something unexpected want wrong");
+              this.toastr.error("Something unexpected went wrong");
               console.log(err);
               break;
           }

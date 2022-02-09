@@ -108,3 +108,5 @@ dist
 .vs
 .vs**
 
+package-lock.json
+package.json
