@@ -43,7 +43,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     FormsModule,
     CoreModule,
   ],
-  providers: [
+providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
