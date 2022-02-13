@@ -20,7 +20,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { SharedModule } from './modules/shared.module';
 import { MemberEditComponent } from './member-edit/member-edit.component';
-
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +42,6 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
     BrowserAnimationsModule,
     FormsModule,
     CoreModule,
-    SharedModule,
   ],
   providers: [
     {
@@ -53,6 +52,11 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
     {
       provide:HTTP_INTERCEPTORS,
       useClass:JwtInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:LoadingInterceptor,
       multi:true
     }
   ],
