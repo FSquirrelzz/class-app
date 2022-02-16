@@ -23,7 +23,7 @@ export class MembersService {
   }
 
   getMember(username: string): Observable<Member> {
-    const member = this.members.find(x=>x.username=username)
+    const member = this.members.find(x=>x.username==username)
     if(member){
       return of(member);
     }
@@ -31,6 +31,9 @@ export class MembersService {
   }
 
   updateMember(member: Member) {
-    return this.http.put(`${this.baseUrl}users`, member);
+    return this.http.put(`${this.baseUrl}users`, member).pipe(tap(_=>{
+      const index = this.members.findIndex(x=>x.id==member.id);
+      this.members[index]=member;
+    }));
   }
 }
